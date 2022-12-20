@@ -34,15 +34,21 @@ export class LoginComponent implements OnInit{
     });
   }
 
-  onLogin() {
-    if (this.loginForm.invalid) return;
-    const loginForm = this.loginForm.value;
-    this.loginService.login(loginForm).subscribe((loginResponse: LoginResponse) => {
-      if (loginResponse.token) {
-        localStorage.setItem('token', loginResponse.token);
-        this.redirectUsers();
-      }
-    });
+  async onLogin() {
+    try {
+      if (this.loginForm.invalid) return;
+      const loginForm = this.loginForm.value;
+      this.loginService.login(loginForm).subscribe((loginResponse: LoginResponse) => {
+        if (loginResponse.token) {
+          localStorage.setItem('token', loginResponse.token);
+          this.redirectUsers();
+        }
+      });
+    } catch (error) {
+      console.log(error);
+      let { err } = error.response.data;
+      this.error = err;
+    }
   }
 
   validateFieldForm(field: string) {
