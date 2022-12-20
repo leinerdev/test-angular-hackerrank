@@ -15,8 +15,17 @@ export class LoginService {
   /**
   * El nombre de este metodo no debería ser cambiado, pero de ser necesario podrías cambiar la firma
    * */
-  public login(loginRequest: LoginRequest): Observable<LoginResponse> {
+  public login(loginRequest: LoginRequest): Promise<any> {
     let serviceUrl: string = `${this.URL}/login`;
-    return this.http.post<LoginResponse>(serviceUrl, loginRequest);
+    const promise = new Promise((resolve, reject) => {
+      this.http.post(serviceUrl, loginRequest).toPromise().then((response) => {
+        resolve(response);
+      }).catch((error) => {
+        reject(error)
+      })
+    });
+
+    return promise;
+
   }
 }

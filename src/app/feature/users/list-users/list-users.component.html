@@ -4,3 +4,55 @@
   Remplazar [index] por el valor ejemplo "user-list__table-item-0"
 -->
 
+<div class="pa-30">
+  <input id="user-list__filter"
+    [(ngModel)]="filter"
+    type="text"
+    class="mb-20 w-25"
+    placeholder="Filter by name"
+  />
+  <table class="card" id="user-list__table">
+    <thead>
+      <tr>
+        <th class="font-weight-bold">#</th>
+        <th class="font-weight-bold">Image</th>
+        <th class="font-weight-bold">Name</th>
+        <th class="font-weight-bold">Email</th>
+        <th class="font-weight-bold">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of users; let i = index">
+        <!-- # -->
+        <td id="{{ 'user-list__table-item-' + i + '' }}" class="font-weight-bold">{{ i + 1 }}</td>
+        <!-- Image -->
+        <td>
+          <img
+            id="{{ 'user-list__table-item-' + i + '-avatar' }}"
+            [src]="user.avatar"
+            alt=""
+            class="img-list"
+          />
+        </td>
+        <!-- Name -->
+        <td id="{{ 'user-list__table-item-' + i + '-first_name' }}" class="font-weight-bold">
+          {{ user.first_name }}
+        </td>
+        <!-- Email -->
+        <td id="{{ 'user-list__table-item-' + i + '-email' }}" class="font-weight-bold">
+          {{ user.email }}
+        </td>
+        <!-- Actions -->
+        <td>
+          <button
+            id="{{ 'user-list__table-item-' + i + '-btn-delete' }}"
+            class="danger"
+            (click)="deleteUser(user.id, user.first_name + ' ' + user.last_name)"
+          >
+            Delete
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

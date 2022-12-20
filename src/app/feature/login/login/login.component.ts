@@ -38,12 +38,9 @@ export class LoginComponent implements OnInit{
     try {
       if (this.loginForm.invalid) return;
       const loginForm = this.loginForm.value;
-      this.loginService.login(loginForm).subscribe((loginResponse: LoginResponse) => {
-        if (loginResponse.token) {
-          localStorage.setItem('token', loginResponse.token);
-          this.redirectUsers();
-        }
-      });
+      const loginResponse = await this.loginService.login(loginForm);
+      localStorage.setItem('token', loginResponse.token);
+      this.redirectUsers();
     } catch (error) {
       console.log(error);
       let { err } = error.response.data;
