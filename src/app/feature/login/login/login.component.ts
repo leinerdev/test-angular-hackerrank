@@ -36,18 +36,13 @@ export class LoginComponent implements OnInit{
 
   async onLogin() {
     try {
-      if (this.loginForm.invalid) {
-        this.loginForm.markAllAsTouched();
-        return;
-      }
       const loginForm = this.loginForm.value;
       const loginResponse = await this.loginService.login(loginForm);
       localStorage.setItem('token', loginResponse.token);
       this.redirectUsers();
-    } catch (error) {
-      console.log(error);
-      let { err } = error.response.data;
-      this.error = err;
+    } catch (errorJson) {
+      const { error } = errorJson;
+      this.error = error.error;
     }
   }
 

@@ -34,16 +34,17 @@
             placeholder="********"
             type="password"
           >
-          <div *ngIf="loginForm.get('password').hasError('required') && loginForm.get('password').touched"
+          <span *ngIf="loginForm.get('password').hasError('required') && loginForm.get('password').touched"
             class="error_field" id="login__password-error">
               Password is required
-          </div>
-          <div *ngIf="( loginForm.get('password').hasError('required') && loginForm.get('password').touched ) || loginForm.get('password').errors?.minlength"
+          </span>
+          <span *ngIf="loginForm.get('password').hasError('minLength') || loginForm.get('password').errors?.minlength"
             class="error_field" id="login__password-error">
               The minimum of characters will be 8
-          </div>
+          </span>
         </div>
         <button id="login__btn-login" type="submit">Sign in</button>
+        <span *ngIf="error !== ''" class="text-center" style="color: red;">{{ error | uppercase }}</span>
       </form>
 
     </div>
