@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '@environments/environment';
 
@@ -10,6 +10,7 @@ import { environment } from '@environments/environment';
 })
 export class UsersService {
 
+  httpOptions: any;
   token: string = localStorage.getItem('token');
   private URL: string = environment.API;
   constructor(private http: HttpClient) {}
@@ -31,7 +32,26 @@ export class UsersService {
 
   }
 
-  deleteUserForIndex(index: number) {
+  deleteUserForIndex(index: number): Promise<any> {
+    let serviceUrl: string = `${this.URL}/users/${index}`;
+    this.generateRequestParams({
+      'Autorization': this.token
+    });
+    const promise = new Promise<any>((resolve, reject) => {
+      this.http.delete(serviceUrl, this.httpOptions).toPromise().then((response) => {
+        resolve(response);
+      }).catch((error) => {
+        reject(error);
+      });
+    });
 
+    return promise;
+  }
+
+  private generateRequestParams(param: any) {
+    this.httpOptions = {
+      header: new HttpHeaders(),
+      params: param,
+    };
   }
 }

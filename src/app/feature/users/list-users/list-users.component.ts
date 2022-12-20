@@ -35,6 +35,19 @@ export class ListUsersComponent implements OnInit {
     }
   }
 
+  deleteUser(id: number, name: string) {
+    this.userService.deleteUserForIndex(id)
+      .then((response) => {
+        console.log(response);
+        alert(`Deleted user: ${name}`);
+        this.router.navigateByUrl('users/list');
+      })
+      .catch((err) => {
+        let { error } = err.response.data;
+        console.error(error);
+      });
+  }
+
 
 
 }

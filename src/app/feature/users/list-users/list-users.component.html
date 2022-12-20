@@ -22,7 +22,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let user of users; let i = index">
+      <tr *ngFor="let user of users | filterUserByName: filter; let i = index">
         <!-- # -->
         <td id="{{ 'user-list__table-item-' + i + '' }}" class="font-weight-bold">{{ i + 1 }}</td>
         <!-- Image -->

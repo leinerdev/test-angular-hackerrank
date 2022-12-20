@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FilterUserByNamePipe } from '@shared/pipes/filter-user-by-name/filter-user-by-name.pipe';
 
 import { SharedModule } from '@shared/shared.module';
 
@@ -16,7 +17,8 @@ import { UsersRoutingModule } from './users-routing.module';
     CreateUserComponent,
     HomeUserComponent,
     ListUsersComponent,
-    NavBarComponent
+    NavBarComponent,
+    FilterUserByNamePipe
   ],
   imports: [
     CommonModule,
