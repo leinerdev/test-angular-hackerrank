@@ -41,6 +41,7 @@ export class LoginComponent implements OnInit{
       localStorage.setItem('token', loginResponse.token);
       this.redirectUsers();
     } catch (errorJson) {
+      this.loginForm.markAllAsTouched();
       const { error } = errorJson;
       this.error = error.error;
     }
