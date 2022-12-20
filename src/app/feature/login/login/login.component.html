@@ -2,3 +2,51 @@
   Recuerde conservar los id, no deben ser modificados
   ids = login__email, login__password, login__password-error, login__email-error, login__btn-login
 -->
+
+<div class="main_container">
+
+  <div class="card flex">
+    <div class="flex layout-column align-items-center">
+      <img src="../../../../assets/images/logo/ceiba-logo.png" alt="ceiba-logo.png" width="250px">
+      <hr width="90%">
+      <h3 class="mt-0 mb-0">Login</h3>
+
+      <form [formGroup]="loginForm" (ngSubmit)="onLogin()" autocomplete="off" class="pa-30 layout-column w-75">
+        <div class="form_field layout-column">
+          <label for="">Email: </label>
+          <input
+            formControlName="email"
+            class="control"
+            id="login__email"
+            placeholder="example@gmail.com"
+            type="email"
+          >
+          <span *ngIf="validateFieldForm('email')" class="error_field"
+            >Email is required</span
+          >
+        </div>
+        <div class="form_field layout-column">
+          <label for="">Password: </label>
+          <input
+            formControlName="password"
+            class="control"
+            id="login__password"
+            placeholder="********"
+            type="password"
+          >
+          <div *ngIf="loginForm.get('password').hasError('required') && loginForm.get('password').touched"
+            class="error_field" id="login__password-error">
+              Password is required
+          </div>
+          <div *ngIf="( loginForm.get('password').hasError('required') && loginForm.get('password').touched ) || loginForm.get('password').errors?.minlength"
+            class="error_field" id="login__password-error">
+              The minimum of characters will be 8
+          </div>
+        </div>
+        <button id="login__btn-login" type="submit">Sign in</button>
+      </form>
+
+    </div>
+  </div>
+
+</div>
