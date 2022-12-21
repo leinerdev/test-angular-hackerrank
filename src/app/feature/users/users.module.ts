@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RouterTestingModule } from '@angular/router/testing';
 import { FilterUserByNamePipe } from '@shared/pipes/filter-user-by-name/filter-user-by-name.pipe';
 
 import { SharedModule } from '@shared/shared.module';
@@ -26,6 +27,7 @@ import { UsersRoutingModule } from './users-routing.module';
     ReactiveFormsModule,
     SharedModule,
     UsersRoutingModule,
+    RouterTestingModule
   ]
 })
 export class UsersModule {
