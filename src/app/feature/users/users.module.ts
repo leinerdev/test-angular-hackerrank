@@ -19,6 +19,7 @@ import { UsersRoutingModule } from './users-routing.module';
     HomeUserComponent,
     ListUsersComponent,
     NavBarComponent,
+    FilterUserByNamePipe
   ],
   imports: [
     CommonModule,
