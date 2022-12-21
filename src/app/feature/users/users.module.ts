@@ -27,7 +27,9 @@ import { UsersRoutingModule } from './users-routing.module';
     ReactiveFormsModule,
     SharedModule,
     UsersRoutingModule,
-    RouterTestingModule
+  ],
+  providers: [
+    FilterUserByNamePipe
   ]
 })
 export class UsersModule {
