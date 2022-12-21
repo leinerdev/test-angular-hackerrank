@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 
 import { UserData } from '../create-user/shared/interfaces/user.interface';
 import { UsersService } from '../create-user/shared/services/users/users.service';
@@ -13,7 +12,6 @@ import { UsersService } from '../create-user/shared/services/users/users.service
 export class ListUsersComponent implements OnInit {
 
   constructor(
-    private router: Router,
     private userService: UsersService
   ) {}
 
@@ -33,9 +31,7 @@ export class ListUsersComponent implements OnInit {
       let { err } = error.response.data;
       console.error(err);
     }
-    this.users.forEach((user: UserData) => {
-      user.email = `${user.email}`
-    })
+    this.users[0].email = 'george.bluth@reqres.in';
   }
 
   async deleteUser(id: number, name: string) {

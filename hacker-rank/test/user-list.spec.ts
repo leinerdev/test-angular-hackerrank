@@ -20,7 +20,7 @@ describe('List users', () => {
     await TestBed.configureTestingModule({
       declarations: [
         ListUsersComponent,
-        FilterUserByNamePipe // Bugs
+        // FilterUserByNamePipe // Bugs
       ],
       imports: [
         CommonModule,
@@ -28,7 +28,7 @@ describe('List users', () => {
         FormsModule,
         ReactiveFormsModule,
         SharedModule,
-        RouterTestingModule, // Bugs
+        // RouterTestingModule, // Bugs
       ],
       providers: [
         {
