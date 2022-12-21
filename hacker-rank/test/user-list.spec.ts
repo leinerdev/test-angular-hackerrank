@@ -48,8 +48,8 @@ describe('List users', () => {
 
     fixture.detectChanges();
 
-    expect(inputSearch?.tagName).toEqual('INPUT');
-    expect(table?.tagName).toEqual('TABLE');
+    expect(inputSearch?.tagName).toEqual('user-list__filter');
+    expect(table?.tagName).toEqual('user-list__table');
   });
 
   it('Obtiene la lista de usuarios al inicializar el componente', fakeAsync(async () => {
