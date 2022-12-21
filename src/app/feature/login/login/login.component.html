@@ -21,7 +21,7 @@
             placeholder="example@gmail.com"
             type="email"
           >
-          <span *ngIf="loginForm.get('email').hasError('required') && loginForm.get('password').touched"
+          <span *ngIf="loginForm.get('email').hasError('required')"
             class="error_field" id="login__email-error">
               Email is required
           </span>
@@ -35,7 +35,7 @@
             placeholder="********"
             type="password"
           >
-          <span *ngIf="loginForm.get('password').hasError('required') && loginForm.get('password').touched"
+          <span *ngIf="loginForm.get('password').hasError('required')"
             class="error_field" id="login__password-error">
               Password is required
           </span>
