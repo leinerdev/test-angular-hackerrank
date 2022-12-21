@@ -1,0 +1,19 @@
+form {
+  gap: 25px
+}
+
+form .form_field {
+  gap: 5px
+}
+
+form .form_field .error_field {
+  color: red;
+  font-weight: 400;
+  font-size: 12px
+}
+
+@media screen and (min-width: 768px) {
+  .card {
+    width: 400px
+  }
+}
