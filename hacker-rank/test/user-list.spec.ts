@@ -8,6 +8,7 @@ import { UsersMockService } from './data/users-mock.service';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { SharedModule } from '@shared/shared.module';
 import { eventInput } from '../shared/util/event-input';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('List users', () => {
   let component: ListUsersComponent;
@@ -30,6 +31,7 @@ describe('List users', () => {
         {
           provide: UsersService, useClass: UsersMockService,
         },
+        RouterTestingModule
       ],
     }).compileComponents();
   });
