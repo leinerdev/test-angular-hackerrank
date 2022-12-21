@@ -2,3 +2,51 @@
   Recuerde conservar los id, no deben ser modificados
   ids = user-create__name, user-create__name-error, user-create__job, user-create__job-error, user-create__btn-create
 -->
+
+<div class="flex justify-content-center pt-30">
+
+  <div class="card flex">
+    <div class="flex layout-column align-items-center">
+      <img src="../../../../assets/images/logo/ceiba-logo.png" alt="ceiba-logo.png" width="250px">
+      <hr width="90%">
+      <h3 class="mt-0 mb-0">Create User</h3>
+
+      <form [formGroup]="createUserForm" (ngSubmit)="createUser()" class="pa-30 layout-column w-75">
+        <div class="form_field layout-column">
+          <label for="">Name: </label>
+          <input
+            formControlName="name"
+            class="control"
+            id="user-create__nam"
+            placeholder="Type name"
+            type="text"
+          >
+          <div
+            *ngIf="createUserForm.get('name').hasError('required') && createUserForm.get('name').touched"
+            class="error_field" id="user-create__name-error">
+            Name is required
+          </div>
+        </div>
+
+        <div class="form_field layout-column">
+          <label for="">Job: </label>
+          <input
+            type="text"
+            id="user-create__job"
+            class="control"
+            placeholder="Type job"
+            formControlName="job"
+          >
+          <div
+            *ngIf="createUserForm.get('job').hasError('required') && createUserForm.get('job').touched"
+            class="error_field" id="user-create__job-error">
+            Job is required
+          </div>
+        </div>
+        <button [disabled]="createUserForm.invalid" id="login__btn-login" type="submit">Create user</button>
+      </form>
+
+    </div>
+  </div>
+
+</div>

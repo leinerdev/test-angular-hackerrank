@@ -35,17 +35,16 @@ export class ListUsersComponent implements OnInit {
     }
   }
 
-  deleteUser(id: number, name: string) {
-    this.userService.deleteUserForIndex(id)
-      .then((response) => {
-        console.log(response);
-        alert(`Deleted user: ${name}`);
-        this.router.navigateByUrl('users/list');
-      })
-      .catch((err) => {
-        let { error } = err.response.data;
-        console.error(error);
-      });
+  async deleteUser(id: number, name: string) {
+    try {
+      const response = await this.userService.deleteUserForIndex(id);
+      console.log(response);
+      this.router.navigateByUrl('users/list');
+      alert(`Deleted user: ${name}`);
+    } catch (error) {
+      let { err } = error.response.data;
+      console.error(err);
+    }
   }
 
 

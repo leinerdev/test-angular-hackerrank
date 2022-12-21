@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '@environments/environment';
+import { CreateUserRequest, UserResponse } from '../../interfaces/user.interface';
 
 /**
  * El nombre de las clases o métodos no se pueden cambiar
@@ -10,7 +11,6 @@ import { environment } from '@environments/environment';
 })
 export class UsersService {
 
-  httpOptions: any;
   token: string = localStorage.getItem('token');
   private URL: string = environment.API;
   constructor(private http: HttpClient) {}
@@ -28,17 +28,15 @@ export class UsersService {
     return promise;
   }
 
-  createUser() {
-
-  }
-
-  deleteUserForIndex(index: number): Promise<any> {
-    let serviceUrl: string = `${this.URL}/users/${index}`;
-    this.generateRequestParams({
-      'Autorization': this.token
-    });
+  createUser(createUserRequest: CreateUserRequest) {
+    let serviceUrl: string = `${this.URL}/users`;
+    const httpOptions = {
+      headers: new HttpHeaders({
+        "Authorization": this.token
+      }),
+    };
     const promise = new Promise<any>((resolve, reject) => {
-      this.http.delete(serviceUrl, this.httpOptions).toPromise().then((response) => {
+      this.http.post(serviceUrl, createUserRequest, httpOptions).toPromise().then((response: UserResponse) => {
         resolve(response);
       }).catch((error) => {
         reject(error);
@@ -48,10 +46,21 @@ export class UsersService {
     return promise;
   }
 
-  private generateRequestParams(param: any) {
-    this.httpOptions = {
-      header: new HttpHeaders(),
-      params: param,
+  deleteUserForIndex(index: number): Promise<any> {
+    let serviceUrl: string = `${this.URL}/users/${index}`;
+    const httpOptions = {
+      headers: new HttpHeaders({
+        "Authorization": this.token
+      }),
     };
+    const promise = new Promise<any>((resolve, reject) => {
+      this.http.delete(serviceUrl, httpOptions).toPromise().then((response) => {
+        resolve(response);
+      }).catch((error) => {
+        reject(error);
+      });
+    });
+
+    return promise;
   }
 }

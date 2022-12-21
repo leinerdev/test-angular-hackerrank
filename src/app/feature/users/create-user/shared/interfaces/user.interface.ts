@@ -12,3 +12,8 @@ export interface UserResponse {
   job: string,
   created_at: string,
 }
+
+export interface CreateUserRequest {
+  name: string,
+  job: string
+}
