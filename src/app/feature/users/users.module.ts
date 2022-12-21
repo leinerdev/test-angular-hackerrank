@@ -19,7 +19,6 @@ import { UsersRoutingModule } from './users-routing.module';
     HomeUserComponent,
     ListUsersComponent,
     NavBarComponent,
-    FilterUserByNamePipe
   ],
   imports: [
     CommonModule,
@@ -27,9 +26,6 @@ import { UsersRoutingModule } from './users-routing.module';
     ReactiveFormsModule,
     SharedModule,
     UsersRoutingModule,
-  ],
-  providers: [
-    FilterUserByNamePipe
   ]
 })
 export class UsersModule {
