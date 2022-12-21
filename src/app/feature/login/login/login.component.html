@@ -21,9 +21,10 @@
             placeholder="example@gmail.com"
             type="email"
           >
-          <span *ngIf="validateFieldForm('email')" class="error_field" id="login__email-error"
-            >Email is required</span
-          >
+          <span *ngIf="loginForm.get('email').hasError('required') && loginForm.get('password').touched"
+            class="error_field" id="login__email-error">
+              Email is required
+          </span>
         </div>
         <div class="form_field layout-column">
           <label for="">Password: </label>
