@@ -33,13 +33,15 @@ export class ListUsersComponent implements OnInit {
       let { err } = error.response.data;
       console.error(err);
     }
+    this.users.forEach((user: UserData) => {
+      user.email = `${user.email}`
+    })
   }
 
   async deleteUser(id: number, name: string) {
     try {
       const response = await this.userService.deleteUserForIndex(id);
       console.log(response);
-      this.router.navigateByUrl('users/list');
       alert(`Deleted user: ${name}`);
     } catch (error) {
       let { err } = error.response.data;
